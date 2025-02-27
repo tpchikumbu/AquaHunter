@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6867502806973407019}
   - component: {fileID: 6819359753914312982}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: floatPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1802004716520102657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.101, y: 0, z: 0.035}
+  m_LocalPosition: {x: -0.101, y: 0.022, z: 0.035}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,13 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterSurface: {fileID: 0}
-  floatPoints: []
   rb: {fileID: 0}
-  waterDrag: 10
-  waterAngularDrag: 0.5
-  depthBeforeSubmerged: 1
-  displacementAmount: 4
+  waterDrag: 15
+  waterAngularDrag: 5
+  depthBeforeSubmerged: 0.5
+  displacementAmount: 2
   floaterCount: 1
+  adjustable: 0
 --- !u!1 &2765146805374949005
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,9 +65,10 @@ GameObject:
   - component: {fileID: 4762460804777436509}
   - component: {fileID: 3511236975988957690}
   - component: {fileID: 6568479152933812937}
-  - component: {fileID: 7110999652174029596}
   - component: {fileID: 7919059725431415386}
-  m_Layer: 0
+  - component: {fileID: 3680241858749127345}
+  - component: {fileID: 3831058459256305695}
+  m_Layer: 9
   m_Name: WoodenBoat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +85,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.394, y: 1.05, z: -4.14}
-  m_LocalScale: {x: 31.131344, y: 18.106833, z: 35.926025}
+  m_LocalScale: {x: 35, y: 35, z: 35}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6867502806973407019}
@@ -92,6 +93,7 @@ Transform:
   - {fileID: 7040084025369888770}
   - {fileID: 566410640223406679}
   - {fileID: 3672600093902633053}
+  - {fileID: 7813876931088793850}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7614050940986745659
@@ -101,7 +103,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2765146805374949005}
-  m_Mesh: {fileID: 4197095107048076384, guid: c198e12e377cc5884a5ec985c746cf5b, type: 3}
+  m_Mesh: {fileID: 4197095107048076384, guid: 0faf2836803266cf1b29796d72f7c533, type: 3}
 --- !u!23 &4762460804777436509
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -122,7 +124,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8748892135801146194, guid: c198e12e377cc5884a5ec985c746cf5b, type: 3}
+  - {fileID: 2100000, guid: 2a53638741cff8afab88964e74e8f53e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -166,8 +168,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2765146805374949005}
   serializedVersion: 4
-  m_Mass: 80
-  m_Drag: 0
+  m_Mass: 150
+  m_Drag: 5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -184,27 +186,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &7110999652174029596
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2765146805374949005}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a259529227a62434ea0610004a138c90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waterSurface: {fileID: 0}
-  floatPoints: []
-  rb: {fileID: 0}
-  waterDrag: 0
-  waterAngularDrag: 0
-  depthBeforeSubmerged: 0
-  displacementAmount: 0
-  floaterCount: 0
+  m_CollisionDetection: 1
 --- !u!65 &7919059725431415386
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -226,6 +208,40 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.23648873, y: 0.0639211, z: 0.07774499}
   m_Center: {x: -0.0024194606, y: 0.043567028, z: -0.0001396928}
+--- !u!114 &3680241858749127345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2765146805374949005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9387c9809471748dc985cd72ac1e3629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deployable: {fileID: 351586482761176461, guid: cac0d887357b5e3c2bd114342aef8b46,
+    type: 3}
+  spawnPoint: {fileID: 7813876931088793850}
+  deployableCount: 5
+--- !u!114 &3831058459256305695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2765146805374949005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3983f94dc8c95ad44af0a6a72b92f4a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 0
+  rayOffset: 0
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  raycastPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &3680697793754642915
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7040084025369888770}
   - component: {fileID: 1274222182926209444}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: floatPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +268,7 @@ Transform:
   m_GameObject: {fileID: 3680697793754642915}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.055, y: 0, z: 0.034}
+  m_LocalPosition: {x: 0.055, y: 0.022, z: 0.034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -271,13 +287,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterSurface: {fileID: 0}
-  floatPoints: []
   rb: {fileID: 0}
-  waterDrag: 10
-  waterAngularDrag: 0.5
-  depthBeforeSubmerged: 1
-  displacementAmount: 4
+  waterDrag: 15
+  waterAngularDrag: 5
+  depthBeforeSubmerged: 0.5
+  displacementAmount: 2
   floaterCount: 1
+  adjustable: 0
 --- !u!1 &4703798331067515876
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3672600093902633053}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LookPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,12 +319,43 @@ Transform:
   m_GameObject: {fileID: 4703798331067515876}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.1, y: -0.032, z: 0}
+  m_LocalPosition: {x: -0.2, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1555434336342230966}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &6111084839262232882
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7813876931088793850}
+  m_Layer: 9
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7813876931088793850
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6111084839262232882}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1555434336342230966}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7124695280972580716
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6700512023812317823}
   - component: {fileID: 3645430877185172360}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: floatPoint (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +382,7 @@ Transform:
   m_GameObject: {fileID: 7124695280972580716}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.098, y: 0, z: -0.047}
+  m_LocalPosition: {x: -0.098, y: 0.022, z: -0.047}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -354,13 +401,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterSurface: {fileID: 0}
-  floatPoints: []
   rb: {fileID: 0}
-  waterDrag: 10
-  waterAngularDrag: 0.5
-  depthBeforeSubmerged: 1
-  displacementAmount: 4
+  waterDrag: 15
+  waterAngularDrag: 5
+  depthBeforeSubmerged: 0.5
+  displacementAmount: 2
   floaterCount: 1
+  adjustable: 0
 --- !u!1 &8668379675921617264
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,7 +418,7 @@ GameObject:
   m_Component:
   - component: {fileID: 566410640223406679}
   - component: {fileID: 8464987847867580375}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: floatPoint (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +434,7 @@ Transform:
   m_GameObject: {fileID: 8668379675921617264}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.054, y: 0, z: -0.041}
+  m_LocalPosition: {x: 0.054, y: 0.022, z: -0.041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -406,10 +453,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterSurface: {fileID: 0}
-  floatPoints: []
   rb: {fileID: 0}
-  waterDrag: 10
-  waterAngularDrag: 0.5
-  depthBeforeSubmerged: 1
-  displacementAmount: 4
+  waterDrag: 15
+  waterAngularDrag: 5
+  depthBeforeSubmerged: 0.5
+  displacementAmount: 2
   floaterCount: 1
+  adjustable: 0

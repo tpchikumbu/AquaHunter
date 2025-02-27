@@ -16,6 +16,7 @@ public class Interactor : MonoBehaviour
     public float rayOffset = 1f;
     public LayerMask interactLayer;
     public Vector3 raycastPosition;
+    [SerializeField] private Transform pingPrefab;
 
     void Start()
     {
@@ -34,12 +35,13 @@ public class Interactor : MonoBehaviour
     {
         raycastPosition = transform.position + new Vector3(0, rayOffset, 0);
         RaycastHit hit;
-        Debug.DrawRay(raycastPosition, transform.forward * interactDistance, Color.red);
+        //Debug.DrawRay(raycastPosition, transform.forward * interactDistance, Color.red);
         if (Physics.SphereCast(raycastPosition, interactDistance, transform.forward, out hit, interactDistance, interactLayer)){
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
             Debug.Log(hit.collider.name);
             if (interactable != null) {
                 interactable.Prompt();
+                Instantiate(pingPrefab, new Vector3(hit.point.x, 2, hit.point.z), Quaternion.Euler(0, 0, 0));
                 if (Input.GetKeyDown(KeyCode.E)) {
                     interactable.Interact();
                 }

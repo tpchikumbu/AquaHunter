@@ -23,14 +23,22 @@ public class ThirdCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
         // rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.CapsLock)) {
+            Cursor.visible = !Cursor.visible;
+            if (Cursor.visible){
+                Cursor.lockState = CursorLockMode.None;
+            } else {
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
         // Rotate orientation
         Vector3 viewDirection = player.position - new Vector3(transform.position.x, player.position.y, transform.position.z);
         orientation.forward = viewDirection.normalized;

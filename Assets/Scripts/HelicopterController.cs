@@ -36,7 +36,7 @@ public class HelicopterController : MonoBehaviour
         // Add lift
         _rigidbody.AddForce(transform.up * _throttle, ForceMode.Impulse);
         // Add rotation
-        _rigidbody.AddTorque(transform.forward * _roll * (_responsiveness / 2f));
+        // _rigidbody.AddTorque(transform.forward * _roll * (_responsiveness / 2f));
         _rigidbody.AddTorque(-transform.right * _pitch * _responsiveness);
         _rigidbody.AddTorque(transform.up * _yaw * _responsiveness);
     }

@@ -8,7 +8,6 @@ public class FPSController : MonoBehaviour
 
     public float walkSpeed = 2f;
     public float sprintSpeed = 4f;
-    private bool isRunning = false;
     private float gravity = 10f;
     private Vector3 moveDirection;
     private float actualHorizontalSpeed;
@@ -69,7 +68,7 @@ public class FPSController : MonoBehaviour
 
     private void Move()
     {
-        RaycastHit hit;
+        // RaycastHit hit;
         actualHorizontalSpeed = ((new Vector3(transform.position.x, 0f, transform.position.z) - new Vector3(previousPosition.x, 0f, previousPosition.z)).magnitude) / Time.deltaTime;
         actualSpeed = ((transform.position - previousPosition).magnitude) / Time.deltaTime;
         previousPosition = transform.position;
@@ -104,12 +103,10 @@ public class FPSController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftShift) && canSprint)
             {
-                isRunning = true;
                 moveDirection *= sprintSpeed;
             }
             else
             {
-                isRunning = false;
                 moveDirection *= walkSpeed;
             }
 
